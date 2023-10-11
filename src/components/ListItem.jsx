@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ListItem (text, checked, onDelete){
+function ListItem ({text, onDelete}){
     const [checked, setChecked] = useState(false);
 
     const handleCheck = () => {
@@ -11,10 +11,10 @@ function ListItem (text, checked, onDelete){
 
 return (
 
-<li className={ `bg-indigo-800 p-2  ${checked ? '{'line-through' : null}`}>
-    {text}<input type="checkbox"checked={checked} onChange={handleCheck}/>
+    <li className={ `rounded-md bg-indigo-800 p-2  ${checked ? 'line-through' : null}`}>
+                 {text}<input type="checkbox"checked={checked} onChange={handleCheck}/>
     
-     </li>
+ </li>
      
      
      
@@ -23,4 +23,4 @@ return (
 }
 
 
-export default ListItem;
+export default ListItem; 
