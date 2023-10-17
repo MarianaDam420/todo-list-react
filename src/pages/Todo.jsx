@@ -1,6 +1,8 @@
 
 import { useState, useRef } from "react";
 import ListItem from "../components/ListItem";
+import { v4 as uuidv4 } from "uuid";
+
 function Todo (){
 
     //useState -> [state, setState]
@@ -11,10 +13,21 @@ function Todo (){
 
     const addTodo = () => {
         const todoValue = inputRef.current.value;
+
+const newTodo = {name: todoValue, id: uuidv4()}
+
         console.log(todoValue);
-        setTodos([...todos, todoValue])
+        setTodos([newTodo, ...todos]);
+        inputRef.current.value ="";
 
     };
+
+    const deleteTodo = (id) => { 'deleteTodo'
+     setTodos(todos.filter((item)=> item.id !== id));
+
+     };
+
+
 return (
     <div className="flex flex-col gap-2">
     <div className="flex gap-2">
@@ -30,12 +43,12 @@ return (
 
         {
             todos.map((value, index)=>{
-                return<ListItem key={index} text={value}/>;
+                return<ListItem key={value.id} text={value.name} onDelete={()=> deleteTodo(value.id)}/>;
             })
         }
 
     <ListItem text= "Item 1" />
-    <ListItem text= "Item 1" />
+
 
     </ul>
     </div>
