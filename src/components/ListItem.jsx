@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 function ListItem ({text, onDelete}){
     const [checked, setChecked] = useState(false);
     
+    useEffect(()=> {
+
+        console.log("Init");
+        return() => {
+            console.log("cleanup");
+        };
+    }, []);
 
     const handleCheck = () => {
 
@@ -14,7 +21,7 @@ return (
 
     <li 
     className={`flex items-center justify-between rounded-md p-2 bg-indigo-800 
-    ${checked ? "text-green-400 line-through":null
+    ${checked ? "text-emerald-300 line-through":null
     }`}>
 
     <div>

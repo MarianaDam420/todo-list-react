@@ -2,7 +2,7 @@ import Todo from "./pages/Todo";
 
 function App() {
   return (
-    <div className="bg-[#222] text-yellow-500" >
+    <div className="bg-[#222] text-pink-300" >
 
 <main className="flex flex-col h-screen items-center justify-center"> 
       <h1 className="text-4xl font-extrabold">Todo List </h1>
