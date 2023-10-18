@@ -5,10 +5,19 @@ import { v4 as uuidv4 } from "uuid";
 
 function Todo (){
 
+
+
+
+
              //useState -> [state, setState]
 
     const [todos, setTodos]= useState([]); 
     const inputRef = useRef (null);
+
+
+
+
+
 /*             //Dependency list is null exec once
 
 useEffect(()=>{
@@ -30,6 +39,21 @@ useEffect(()=>{
     console.log("useEffect", todos);
            
 }, [todos]);
+
+
+useEffect(()=>{
+const getTodos = () => {
+    console.log("useEffect");
+    fetch("https://rickandmortyapi.com/api/character")
+    .then((response)=> response.json())
+    .then((data) =>{
+     console.log(data);
+    });
+};
+getTodos();
+}, []);
+
+
 
               //Add a new ToDo
 

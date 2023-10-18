@@ -11,6 +11,14 @@ function ListItem ({text, onDelete}){
         };
     }, []);
 
+
+    useEffect(()=> {
+
+       console.log("Checked", checked);
+       if (checked) alert("Check");
+    }, [checked]);
+
+
     const handleCheck = () => {
 
         setChecked(!checked);
@@ -31,7 +39,7 @@ return (
     
     <button 
     onClick={onDelete} 
-    className="rounded-md bg-red-950 p-2 hover:bg-red-700">Delete</button>
+    className="rounded-md bg-pink-500 p-2 hover:bg-red-700">Delete</button>
     </li>     
      
 );
