@@ -1,22 +1,38 @@
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useReducer } from "react";
 import ListItem from "../components/ListItem";
 import { v4 as uuidv4 } from "uuid";
 
+function reducer(state,action){
+    console.log(action,state);
+    //ACTIONS
+    switch(action.type) {
+        case'ADD_TODO':
+
+        ///CODE.... 
+        
+        return{
+            ... state,
+            todos: [action.newTodo,...state.todos],
+
+        };
+        default:
+            throw new Error('That action do not exist')
+    }
+}
+
+const initialState = {
+    todos: [{name: 'Hola mundo', id: 1, checked: false}],
+
+};
+        
+
 function Todo (){
 
-
-
-
-
+    const [state, dispatch] = useReducer(reducer, initialState);
              //useState -> [state, setState]
-
     const [todos, setTodos]= useState([]); 
     const inputRef = useRef (null);
-
-
-
-
 
 /*             //Dependency list is null exec once
 
@@ -53,19 +69,13 @@ const getTodos = () => {
 getTodos();
 }, []);
 
-
-
-              //Add a new ToDo
+              //Add a new ToDo    ------   DISPATCH
 
     const addTodo = () => {
         const todoValue = inputRef.current.value;
 
-const newTodo = {name: todoValue, id: uuidv4()}
-        
-        console.log(todoValue);
-        console.log("before", todos);
-        setTodos([newTodo, ...todos]);
-        console.log("after", todos);
+        const newTodo = {name: todoValue, id: uuidv4(), checked:false};
+        dispatch({type: 'ADD_TODO', newTodo});
         inputRef.current.value ="";
 
     };
@@ -89,15 +99,11 @@ return (
     <ul className="flex flex-col gap-2">
 
 
-        {
-            todos.map((value, index)=>{
+        {   
+            state.todos.map((value, index)=>{
                 return<ListItem key={value.id} text={value.name} onDelete={()=> deleteTodo(value.id)}/>;
             })
         }
-
- 
-
-
     </ul>
     </div>
 
